@@ -1,0 +1,145 @@
+
+\documentclass[11pt]{article}
+\usepackage{graphicx}
+\usepackage{fullpage}
+\usepackage{hyperref}
+
+\usepackage{times,graphicx,epstopdf,fancyhdr,amsfonts,amsthm,amsmath,algorithm,algorithmic,xspace,hyperref}
+\usepackage[left=.75in,top=.75in,right=.75in,bottom=.75in]{geometry}
+
+%\textwidth 7in
+%\textheight 9.5in
+
+\pdfpagewidth 8.5in
+\pdfpageheight 11in 
+
+\pagestyle{fancy}
+
+
+% Margins are default 1in. on all sides
+% thus, if you wanted .5 on the left, and right
+% you'd do \oddsidemargin -.25in.
+% \evensidemargin -.25in. and
+% \textwidth 7in.
+\oddsidemargin 0in
+\evensidemargin 0in
+
+
+\newtheorem{claim}{Claim}
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{observation}{Observation}
+\newtheorem{question}{Question}
+
+
+\begin{document}
+	
+\begin{center}
+\Large{\textbf{CS 330 -- Spring 2016, Assignment 1}}\\
+\large{\textbf{Problems due 7PM, Thursday January 28.  Please submit a hardcopy in the CS drop box.}}
+\end{center}
+
+\lfoot{Boston University}
+\rfoot{Prof. John Byers}
+
+Our first homework has several questions that require short proofs.  In writing up proofs, try to make 
+sure your reasoning flows logically from one statement to another.  You should edit your proofs to 
+make sure they are clear and concise.  Typesetting your solutions in \LaTeX (www.latex-project.org) is
+preferred, but you may also write them up. 
+
+
+\setcounter{question}{-1}
+
+
+\begin{question}
+Chapter 2, Exercise 4, on p. 67.  (Review question - not graded, do not submit).
+\end{question}
+
+
+
+\begin{question}
+Exercises 1 and 2 of Chapter 1 on p. 22.
+\end{question}
+
+\begin{quotation}
+
+1.
+"True or false? In every instance of the Stable Matching Problem, there is a stable matching containing a pair (m, w) such that m is ranked first on the preference list of w and w is ranked first on the preference list of m."
+
+\end{quotation}
+
+\begin{large}
+False.
+Counterexample: the first example from the lecture slides
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{r|ccc}
+(m, & \multicolumn{3}{c}{w)}\\
+\hline
+X & A & B & C \\
+Y & B & A & C \\
+Z & A & B & C
+\end{tabular}
+\end{center}
+\end{table}
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{r|ccc}
+(w, & \multicolumn{3}{c}{m)}\\
+\hline
+A & Y & X & Z \\
+B & X & Y & Z \\
+C & X & Y & Z
+\end{tabular}
+\end{center}
+\end{table}
+
+\end{large}
+
+
+\begin{quotation}
+2.
+True or false? Consider an instance of the Stable Matching Problem in which there exists a man m and a woman w such that m is ranked first on the preference list of w and w is ranked first on the preference list of m. Then in every stable matching S for this instance, the pair (m, w) belongs to S.
+\end{quotation}
+
+\begin{large}
+True, because, in the Gale-Shapley algorithm, this "perfect pair" will be either matched immediately, or upon finding that the male is matched with a lower-order female, his match will be switched to the \#1 female.
+\end{large}
+\pagebreak 
+
+\begin{question}
+Consider the following problem called the {\em Stable Officemate Problem}.  Here there are $2n$ people, each of whom ranks the other $2n-1$ people in order of preference.  For example, Addie, Brian, Carlos, and Don might have the following rankings:
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{r|ccc}
+Name & \multicolumn{3}{c}{Preference}\\
+\hline
+Addie & Brian & Carlos & Don\\
+Brian & Addie & Carlos & Don \\
+Carlos & Don & Addie & Brian \\
+Don & Carlos & Addie & Brian
+\end{tabular}
+\end{center}
+\end{table}
+
+The goal is to find a stable matching ({\em i.e.,} $n$ pairs of officemates such that no two people prefer each other to their current officemate).  We proved in class that a stable matching always exists for instances of the stable matching problem.  Do stable matchings always exist for the stable officemate problem?  If so, provide a proof.  If not, give a counterexample.
+\end{question}
+\pagebreak 
+\begin{question}
+Recall the {\em largest sum subinterval} problem.  The input is an array $A$ of integer values.  The output is the largest sum of any subinterval of $A$.  In class we will discuss both a cubic ($O(n^{3})$) and a quadratic ($O(n^{2})$) time algorithm for solving this problem.  Here you will develop an $O(n)$ time algorithm to solve it.
+\begin{enumerate}
+	\item Let $PS(j) = \sum_{i=1}^{j} A[i]$ give the partial sum of the first $j$ integer values of $A$.  Show that if $PS(j) \geq 0$ for all $1 \leq j \leq n$, then the largest sum subinterval is the interval $[1,k]$ where $k$ maximizes $PS(k)$.
+	\item Show that when $PS(j)$ falls below 0, the problem essentially ``resets''  with $PS(j)$ being the new 0.  That is, the largest sum subinterval never includes $j$---it falls on one side or the other.
+	\item Use the above two claims to give an elegant $O(n)$-time solution to the largest sum subinterval problem.
+\end{enumerate}
+\end{question}
+
+\begin{question}
+Chapter 2, Exercise 8, on pp. 69-70.  For part (b), we will just grade the $k=3$ case, but feel free to solve it in general.
+\end{question}
+
+
+\end{document}
